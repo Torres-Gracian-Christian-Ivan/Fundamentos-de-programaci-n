@@ -1,0 +1,9 @@
+echo "# Fundamentos-de-programaci-n" >> README.md 
+git init 
+git add README.md 
+git commit -m "first commit" 
+git branch -M main 
+git remote agregar origen https://github.com/Torres- Gracian-Christian-Ivan / Fundamentos-de-programaci-n.git
+ git push -u origin main
+                
+          
