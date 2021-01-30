@@ -1,0 +1,182 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<windows.h>
+#include<string.h> 
+
+    //á –> \xA0; ó –> \xA2;  ñ –> \xA4; Ñ –> \xA5;
+   
+void bienvenida();
+void preguntas();
+void guardar();
+
+int i, correcto = 0; //variables globales
+char nombre[20]; //alojara el nombre del jugador
+
+main(){ //funcion principal
+	
+	bienvenida(); //llamada a funcion bienvenida() 
+	preguntas(); //llamada a funcion preguntas()
+		
+	return 0; //Si no hay ningun error devolvera 0 
+}
+
+void bienvenida(){
+	
+	printf("\n\t\tBIEVENIDOS A PREGUNTAS DE CULTURA GENERAL :D");
+	printf("\nIngresa tu nombre: ");
+	scanf("%s",&nombre); //Aloja el nombre del jugador
+	system("cls"); //Limpia pantalla
+	printf("\n Hola %s, te presentamos las reglas",nombre); //Saluda con el nombre del jugador ingresado
+	printf("\n\n\n Reglas:\n 1)Tendras que responder 7 preguntas para ganar tu premio\n");
+	printf(" 2)Solo tienes 10 segundos por pregunta para responder correctamente\n");
+	printf(" 3)Recuerda que no seran validas las respuestas con acentos\n");
+	printf(" 4)Solo escribir la respuesta todo en minusculas o MAYUSCULAS\n");
+}
+
+void preguntas(){
+		
+		
+		char respuestafinal[15];//Declaramos variable donde se alojara la respuesta que ingrese el usuario
+		srand(time(NULL)); //Instrucción que inicializa el generador de números aleatorios
+		int opc, opc1, num; //Variable para ingresar el nivel de dificultad, si quiere volver a jugar y el numero aleatorio. 
+		char *respuesta1M[20] = {"HOMERO","NILO","ISABEL","AMERICA","GRECIA","1945","OMNIVOROS","PRODUCTO","RUSIA","1939","LATIN","ESCAMAS","FOTOSINTESIS",
+								"JUDAS","PARIS","EQUILATERO","DOLAR","NUEVA YORK","8","VERDE",}; //Respuestas faciles en mayusculas
+								
+		char *respuesta2M[20] = {"ULAN_BATOR","206","MAMIFERO","MIGUEL_DE_CERVANTES","LEONARDO DAVINCI","BARCELONA","TIERRA","LIBRA","MANDARIN","INDIA","COBRE",
+								"MIR","TELESCOPIO","HEMEROTECA","MURCIELAGO","CORAN","CHILENO","FRANCIA","6 DE ENERO","COPENHAGUE"}; //Respuestas dificiles en mayusculas
+								
+		char *respuesta1m[20] = {"homero","nilo","isabel","america","grecia","1945","omnivoros","producto","rusia","1939","latin","escamas","fotosintesis",
+								"judas","paris","equilatero","dolar","nueva york","8","verde",}; //Respuestas faciles en minusculas
+								
+		char *respuestas2m[20] = {"ulan bator","206","mamifero","miguel_de_cervantes","leonardo_davinci","barcelona","tierra","libra","mandarin","india",
+								"cobre","mir","telescopio","hemeroteca","murcielago","coran","chileno","francia","6 de enero","copenhague"}; //Respuestas dificiles en mayusculas
+								
+		char *pregunta1[20] = {"Quien escribio La Odisea?","Cual es el rio mas largo del mundo","Como se llama la Reina del Reino Unido?",
+								"En que continente esta Ecuador?","Donde originaron los juegos olimpicos?","Cuando acabo la II Guerra Mundial?",
+								"Que son los humanos: omnivoros, herbivoros o carnivoros?","Como se denomina el resultado de la multiplicacion?",
+								"Cual es el pais mas grande del mundo?","En que a\xA4o comenzo la II Guerra Mundial?","De que lengua proviene el espa\xA4ol?",
+								"De que esta recubierto el cuerpo de los peces?","Como se llama el proceso por el cual las plantas obtienen alimento?",
+								"Quien traiciono a Jesus?","Cual es la capital de Francia?","Como se llama el triangulo con todos sus lados iguales?",
+								"Cual es la moneda oficial de Estados Unidos?","Cual es la ciudad de los rascacielos?","Cuantos tentaculos tiene un pulpo?",
+								"Cual es el color que representa la esperanza?"}; //Preguntas faciles 
+								
+		char *pregunta2[20] = {"Como se llama la capital de Mongolia?","Que cantidad de huesos en el cuerpo humano adulto?",
+								"Que tipo de animal es la ballena?","Quien es el autor de el Quijote?","Quien pinto la ultima cena?",
+								"Donde se encuentra la Sagrada Familia?","Cual es tercer planeta en el sistema solar?","Cual es la moneda del Reino Unido?",
+								"Cual es el nombre de la lengua oficial en china?","En que pais se encuentra el famoso monumento Taj Mahal?",
+								"Cual fue el primer metal que empleo el hombre?","Como se llama la estacion espacial rusa?",
+								"Que instrumento optico permite ver los astros de cerca","Como se le llama a una coleccion de revistas, diarios y publicaciones periodicas?",
+								"Cual es el unico mamifero capaz de volar?","Cual es el libro sagrado del Islam?","Cual es la nacionalidad de Pablo Neruda?",
+								"De que estado fue emperador Napoleon Bonaparte?","Que dia celebran los cristianos la festividad de la Epifania de Jesus?",
+								"Cual es la capital de Dinamarca?"}; //Preguntas dificiles
+		
+		printf("\n Selecciona la dificultad que deseas: \n (1) FACIL \n (2) DIFICIL\n");
+		scanf("%d",&opc); //Ingresa el nivel de dificultad
+		system("cls"); //Limpia pantalla
+	
+		printf("\n %c ESTAS LISTO?",168);
+		printf("\n Comencemos!!!");
+	
+		printf("\n\n MUCHA SUERTE %s\n",nombre); //Mensaje con nombre de participante
+		sleep(5); //Mantiene el codigo 5 segundos
+		system("cls"); //Limpia pantalla
+		
+		for(i=0;i<=6;i++){//Se iterara 7 veces 
+			
+		
+			fflush( stdin ); // Se usa para limpiar el intro que queda en el buffer
+			printf("Pregunta [%d]\n",i+1); //Escribe la palabra pregunta y el numero segun la iterancion en la que se encuentre
+			num=rand()%20; //Genera numero aleatorios del 0 al 20 
+			
+			switch(opc){//Aqui entrara a la opcion seleccionada 
+				
+				case 1: //Preguntas faciles
+				
+
+					printf("%c%s\n",168,pregunta1[num]); //Imprime pregunta segun posicion en el arreglo. La posicion es dada por "num".
+					gets(respuestafinal);
+					
+					 
+					char *respselec, *respselec1; //Definiendo apuntadores
+					respselec  = respuesta1M[num]; //Asignando la seleccion del apuntador a otro apuntador para las respuestas en mayusculas
+					respselec1  = respuesta1m[num]; //Asignando la seleccion del apuntador a otro apuntador para las respuestas en mayusculas
+					//printf("%s\n",respselec[20]); 
+					//printf("%s\n",respuesta1M[num]);
+					
+					if(strcmp(respselec,respuestafinal)==0 || strcmp(respselec1,respuestafinal)==0){ //Comparando cadenas de caracteres y usando 
+																									//operador logico "or" para hacer dos condiciones
+						printf("Correcto\n");
+						correcto = correcto + 1; //Contador para guardar las respuesta correctas
+						sleep(3); //Espera de 3 segundos
+						system("cls"); //Limpiando pagina
+					}
+					else
+						printf("Incorrecto\a\n");	
+						sleep(3); //Espera de 3 segundos
+						system("cls"); //Limpiando pagina
+				break;
+					
+				case 2: //Preguntas dificiles		
+				
+					printf("%c%s\n",168,pregunta2[num]);
+					gets(respuestafinal); //El usuario ingresa la respuesta
+				
+					char *respselecD, *respselec1D; //Declaramos lo apuntadores
+					respselecD  = respuesta2M[num]; //Asignando la seleccion del apuntador a otro apuntador para las respuestas en mayusculas
+					respselec1D  = respuestas2m[num]; //Asignando la seleccion del apuntador a otro apuntador para las respuestas en mayusculas
+				
+				if(strcmp(respselecD,respuestafinal)==0 || strcmp(respselec1D,respuestafinal)==0){ //Comparando cadenas de caracteres y usando 
+																									//operador logico "or" para hacer dos condiciones
+					printf("Correcto\n");
+					correcto = correcto + 1; //Contador para guardar las respuesta correctas
+					
+					sleep(3);
+					system("cls"); //Limpia pantalla
+				}
+				else
+					printf("Incorrecto\a\n");	
+					sleep(3);
+					system("cls"); //Limpia pantalla
+				break;
+			default: 
+				printf("Opcion invalida");
+				main(); //Llamando a la funcion principal haremos que se repita el juego
+			}
+		}
+		
+		if(correcto>=5){
+		
+			printf("Felicidades, acabas de ganarte un premio sorpresa, revisa tu carpeta de archivos para descubrir tu premio\n");
+			guardar(); //Lama la funcion guardar para crear el archivo donde vendra el premio
+			sleep(4);
+			system("cls");
+		}
+		else{
+			printf("Suerte para la proxima\n");
+			sleep(3); //Espera 3 segundos
+			system("cls"); //Limpia pantalla	
+		}
+			
+		printf("Quieres jugar de nuveo?\n (1)SI\n (2)NO\n ");
+		scanf("%d",&opc1); //Selecciona si se quiere repetir el juego
+		
+		if(opc1==1){
+			system("cls"); //Limpia pantalla
+			main(); //Manda a llamar a la funcion principal para repetir el juego
+		}
+		
+		else if(opc == 2){ //Si se escoge esta opcion terminara el juego
+			system("cls"); //Limpia pantalla
+			printf("Te esperamos pronto..."); 
+		}
+}
+
+void guardar(void)
+{
+    FILE*flujo=fopen("PREMIO.txt","w"); //Creamos el archivo 
+	fprintf(flujo,"\t\t\t\tFelicidades!!!!\n\n\t\tEstimada/o %s, te has ganado unos decimas extra en tu materia \n",nombre); //Guarda informacion dentro del archivo
+    fclose(flujo); //Cierra el archivo
+}
+
+
